@@ -33,11 +33,11 @@ public class AsIntStream implements IntStream {
         Iterable<Integer> iterable = () -> this.it;
         int sumAll = 0;
         int len = 0;
-        for (int value: iterable){
+        for (int value : iterable) {
             len += 1;
             sumAll += value;
         }
-        return (double) sumAll/len;
+        return (double) sumAll / len;
     }
 
     @Override
@@ -45,8 +45,8 @@ public class AsIntStream implements IntStream {
         isEmpty();
         Iterable<Integer> iterable = () -> this.it;
         int maxValue = Integer.MIN_VALUE;
-        for (int value: iterable){
-            if (maxValue < value){
+        for (int value : iterable) {
+            if (maxValue < value) {
                 maxValue = value;
             }
         }
@@ -58,8 +58,8 @@ public class AsIntStream implements IntStream {
         Iterable<Integer> iterable = () -> this.it;
         isEmpty();
         int minValue = Integer.MAX_VALUE;
-        for (int value: iterable){
-            if (minValue > value){
+        for (int value : iterable) {
+            if (minValue > value) {
                 minValue = value;
             }
         }
@@ -82,7 +82,7 @@ public class AsIntStream implements IntStream {
         isEmpty();
         Iterable<Integer> iterable = () -> this.it;
         int sumAll = 0;
-        for (int value: iterable){
+        for (int value : iterable) {
             sumAll += value;
         }
         return sumAll;
@@ -91,11 +91,11 @@ public class AsIntStream implements IntStream {
     @Override
     public IntStream filter(IntPredicate predicate) {
         return new AsIntStream(new FilterIterator(predicate, this.it));
-   }
+    }
 
     @Override
     public void forEach(IntConsumer action) {
-        while (it.hasNext()){
+        while (it.hasNext()) {
             action.accept(it.next());
         }
     }
@@ -124,11 +124,11 @@ public class AsIntStream implements IntStream {
     public int[] toArray() {
         Iterable<Integer> iterable = () -> this.it;
         ArrayList<Integer> lst = new ArrayList<>();
-        for(int value : iterable){
+        for (int value : iterable) {
             lst.add(value);
         }
         int[] arr = new int[lst.size()];
-        for (int i = 0; i < lst.size(); i++){
+        for (int i = 0; i < lst.size(); i++) {
             arr[i] = lst.get(i);
         }
 //                Arrays.copyOf(lst.toArray(), lst.size(), Integer[].class);
@@ -136,8 +136,8 @@ public class AsIntStream implements IntStream {
         return arr;
     }
 
-    private void isEmpty(){
-        if (this.it == null || !this.it.hasNext()){
+    private void isEmpty() {
+        if (this.it == null || !this.it.hasNext()) {
             throw new IllegalArgumentException("Empty stream");
         }
 

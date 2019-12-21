@@ -13,16 +13,17 @@ public class FlatMapIterator implements Iterator<Integer> {
     private boolean notEmpty = false;
     private Integer next = null;
 
-    public FlatMapIterator(IntToIntStreamFunction func, Iterator<Integer> it){
+    public FlatMapIterator(IntToIntStreamFunction func, Iterator<Integer> it) {
         this.it = it;
         this.func = func;
     }
+
     @Override
     public boolean hasNext() {
-        if (next != null){
+        if (next != null) {
             return true;
         }
-        if (notEmpty && numberIter.hasNext()){
+        if (notEmpty && numberIter.hasNext()) {
             next = numberIter.next();
             return true;
         }
@@ -31,7 +32,7 @@ public class FlatMapIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        if(next == null && !hasNext()){
+        if (next == null && !hasNext()) {
             throw new NoSuchElementException();
         }
         Integer value = next;
@@ -39,7 +40,7 @@ public class FlatMapIterator implements Iterator<Integer> {
         return value;
     }
 
-    public boolean numIterator(){
+    public boolean numIterator() {
         if (it.hasNext()) {
             int curr = it.next();
             AsIntStream stream = (AsIntStream) func.applyAsIntStream(curr);

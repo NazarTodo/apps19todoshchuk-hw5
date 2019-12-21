@@ -5,9 +5,11 @@ import java.util.Iterator;
 public class BaseIterator implements Iterator<Integer> {
     private int[] lst;
     private Integer current = 0;
-    public BaseIterator(int [] lst){
+
+    public BaseIterator(int[] lst) {
         this.lst = lst;
     }
+
     @Override
     public boolean hasNext() {
         return current < lst.length;

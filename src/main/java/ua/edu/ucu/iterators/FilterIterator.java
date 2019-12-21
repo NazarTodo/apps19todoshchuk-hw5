@@ -7,18 +7,20 @@ import java.util.Iterator;
 public class FilterIterator implements Iterator<Integer> {
     private IntPredicate predicate;
     private Iterator<Integer> it;
-//    previous iterator
+    //    previous iterator
     private int curr;
-//    current number
-    public FilterIterator(IntPredicate predicate, Iterator<Integer> it){
+
+    //    current number
+    public FilterIterator(IntPredicate predicate, Iterator<Integer> it) {
         this.predicate = predicate;
         this.it = it;
     }
+
     @Override
     public boolean hasNext() {
-        while (it.hasNext()){
+        while (it.hasNext()) {
             curr = it.next();
-            if (predicate.test(curr)){
+            if (predicate.test(curr)) {
                 return true;
             }
         }

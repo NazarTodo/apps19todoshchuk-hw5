@@ -8,10 +8,12 @@ public class MapIterator implements Iterator<Integer> {
     private IntUnaryOperator mapper;
     private Iterator<Integer> it;
     private int curr;
-    public MapIterator(IntUnaryOperator mapper, Iterator<Integer> it){
+
+    public MapIterator(IntUnaryOperator mapper, Iterator<Integer> it) {
         this.mapper = mapper;
         this.it = it;
     }
+
     @Override
     public boolean hasNext() {
         if (it.hasNext()) {

@@ -1,8 +1,7 @@
 package ua.edu.ucu;
 
-import ua.edu.ucu.stream.*;
-
-import java.util.Arrays;
+import ua.edu.ucu.stream.AsIntStream;
+import ua.edu.ucu.stream.IntStream;
 
 public class StreamApp {
 
@@ -11,31 +10,21 @@ public class StreamApp {
         int res = intStream
                 .filter(x -> x > 0) // 1, 2, 3
                 .map(x -> x * x) // 1, 4, 9
-                .flatMap(x -> AsIntStream.of(x - 1, x, x + 1)) // 0, 1, 2, 3, 4, 5, 8, 9, 10
+                .flatMap(x -> AsIntStream.of(x - 1, x, x + 1))
+                // 0, 1, 2, 3, 4, 5, 8, 9, 10
                 .reduce(0, (sum, x) -> sum += x); // 42
         return res;
     }
 
-    public static int[] streamToArray(IntStream intStream) {        
+    public static int[] streamToArray(IntStream intStream) {
         int[] intArr = intStream.toArray();
         return intArr;
     }
 
-    public static String streamForEach(IntStream intStream) {        
+    public static String streamForEach(IntStream intStream) {
         StringBuilder str = new StringBuilder();
         intStream.forEach(x -> str.append(x));
         return str.toString();
     }
 
-    public static void main(String[] args) {
-        IntStream intStream = AsIntStream.of(-1, 0, 1, 2, 3); // input values
-
-//        intStream.filter(x -> x > 0);
-        intStream
-                .filter(x -> x > 0) // 1, 2, 3
-                .map(x -> x * x) // 1, 4, 9
-                .flatMap(x -> AsIntStream.of(x - 1, x, x + 1)); // 0, 1, 2, 3, 4, 5, 8, 9, 10
-//                .reduce(0, (sum, x) -> sum += x);
-        System.out.println(Arrays.toString(intStream.toArray()));
-    }
 }
